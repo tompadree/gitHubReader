@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/fragmentLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="invisible">
+
+    <TextView
+        android:id="@+id/tv_fullname"
+        style="@style/AppTheme.TextViewHeader"
+        android:freezesText="true"
+        android:text="@string/view_text_repo"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:layout_marginRight="5dp"
+                android:text="@string/view_text_language" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_created"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/modified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_modified"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_modified"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/watchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_watchers"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_watchers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/forks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_forks"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_forks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/subscriptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_subscriptions"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_subscriptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/typeUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_typeUser"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_typeUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/siteAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_siteAdmin"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_siteAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:text="@string/view_text_repoDetails"
+            android:textSize="18dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="22dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/issues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.TextViewTitle"
+                android:text="@string/view_text_issues"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_issues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin"
+                android:freezesText="true"/>
+        </LinearLayout>
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:layout_marginTop="15dp"
+            android:id="@+id/tv_pull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:text="@string/view_text_pull"
+            android:textStyle="bold"/>
+
+        <TextView
+            style="@style/AppTheme.TextViewTitle"
+            android:layout_marginTop="15dp"
+            android:id="@+id/tv_pulse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:text="@string/view_text_pulse"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHubReader</string>
+
+    <string name="title_activity_result_list">Repositories List</string>
+    <string name="title_activity_result_details">Repository Details</string>
+
+
+    <string name="edit_text_hint">Repo</string>
+    <string name="btn_text_search">Search</string>
+    <string name="btn_text_retry">Retry</string>
+
+    <string name="view_text_email">Email: </string>
+    <string name="view_text_followers">Followers: </string>
+    <string name="view_text_description">Description: </string>
+    <string name="view_text_language">Programming language: </string>
+    <string name="view_text_created">Created at: </string>
+    <string name="view_text_modified">Updated at: </string>
+    <string name="view_text_forks">Number of forks: </string>
+    <string name="view_text_issues">Number of issues: </string>
+    <string name="view_text_watchers">Nubmer of watchers: </string>
+    <string name="view_text_typeUser">Type of user: </string>
+    <string name="view_text_siteAdmin">Is Admin: </string>
+    <string name="view_text_subscriptions">Number of subscriptions: </string>
+    <string name="view_text_repoDetails">Repository details in browser(click): </string>
+    <string name="view_text_pull">Pull details </string>
+    <string name="view_text_pulse">Pulse details </string>
+    <string name="view_text_repo">REPO NAME </string>
+
+
+
+    <string name="string_content_description">Non accessible view</string>
+
+    //Exception messages
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_no_string">Please enter search term</string>
+    <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
+
+</resources>
