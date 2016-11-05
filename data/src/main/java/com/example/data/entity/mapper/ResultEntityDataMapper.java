@@ -56,12 +56,7 @@ public class ResultEntityDataMapper {
      */
     public List<Result> transform(Collection<ResultEntity> resultEntityCollection) {
 
-        List<Result> resultList;
-//        if(resultEntityCollection==null || resultEntityCollection.isEmpty())
-//            return null;
-       // try {
-
-           resultList = new ArrayList<>(50);
+        List<Result> resultList = new ArrayList<>(50);
            Result result;
            for (ResultEntity resultEntity : resultEntityCollection) {
                result = transform(resultEntity);
@@ -71,9 +66,6 @@ public class ResultEntityDataMapper {
            }
 
            return resultList;
-//       }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return resultList;
+
     }
 }

@@ -23,18 +23,6 @@ public class Navigator {
   }
 
   /**
-   * Goes to the user list screen.
-   *
-   * @param context A Context needed to open the destiny activity.
-   */
-//  public void navigateToResultList(Context context, String searchRepo) {
-//    if (context != null) {
-//      Intent intentToLaunch = ResultListActivity.getCallingIntent(context, searchRepo);
-//      context.startActivity(intentToLaunch);
-//    }
-//  }
-
-  /**
    * Goes to the user details screen.
    *
    * @param context A Context needed to open the destiny activity.

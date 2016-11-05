@@ -25,8 +25,8 @@ import butterknife.ButterKnife;
  */
 public class ResultDetailsActivity extends BaseActivity implements HasComponent<ResultComponent> {
 
-    private static final String INTENT_EXTRA_PARAM_RESULT_ID = "org.android10.INTENT_PARAM_USER_ID";
-    private static final String INSTANCE_STATE_PARAM_RESULT_ID = "org.android10.STATE_PARAM_USER_ID";
+    private static final String INTENT_EXTRA_PARAM_RESULT_ID = "org.android10.INTENT_PARAM_REPO_ID";
+    private static final String INSTANCE_STATE_PARAM_RESULT_ID = "org.android10.STATE_PARAM_REPO_ID";
 
     public static Intent getCallingIntent(Context context, String repoName) {
         Intent callingIntent = new Intent(context, ResultDetailsActivity.class);
@@ -42,7 +42,6 @@ public class ResultDetailsActivity extends BaseActivity implements HasComponent<
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_layout);
         ButterKnife.bind(this);
 

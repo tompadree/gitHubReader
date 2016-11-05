@@ -32,12 +32,10 @@ public class ResultModule {
     @Provides @PerActivity @Named("resultList") UseCase provideGetResultListUseCase(
             ResultRepository resultRepository, ThreadExecutor threadExecutor,PostExecutionThread postExecutionThread) {
         return new GetResultList(repoName, page, resultRepository, threadExecutor, postExecutionThread);
-        //return new GetResultDetails(repoId, resultRepository, threadExecutor, postExecutionThread);
     }
 
     @Provides @PerActivity @Named("repoDetails") UseCase provideGetResultDetailsUseCase(
             ResultRepository resultRepository, ThreadExecutor threadExecutor,PostExecutionThread postExecutionThread) {
         return new GetResultDetails(repoName, resultRepository, threadExecutor, postExecutionThread);
-        //return new GetResultDetails(repoId, resultRepository, threadExecutor, postExecutionThread);
     }
 }

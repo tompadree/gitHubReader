@@ -67,6 +67,7 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
   }
   private String repoName;
   private SimpleDateFormat fmt, outputTime;
+
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.getComponent(ResultComponent.class).inject(this);

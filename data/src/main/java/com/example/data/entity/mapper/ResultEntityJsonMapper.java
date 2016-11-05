@@ -62,8 +62,7 @@ public class ResultEntityJsonMapper {
      */
     public List<ResultEntity> transformResultEntityCollection(String resultListJsonResponse) throws JsonSyntaxException, JSONException {
 
-        List<ResultEntity> resultEntityCollection;// = new ArrayList<ResultEntity>();
-       // List<ResultEntity> resultEntityCollectionTemp = null;
+        List<ResultEntity> resultEntityCollection;
         try {
 
             Type listOfResultEntityType = new TypeToken<List<ResultEntity>>(){}.getType();
@@ -71,22 +70,9 @@ public class ResultEntityJsonMapper {
             JsonParser jsonParser = new JsonParser();
             JsonObject jo = (JsonObject)jsonParser.parse(resultListJsonResponse);
             JsonArray jsonArr = jo.getAsJsonArray("items");
-           // int a = jsonArr.size();
 
             resultEntityCollection = this.gson.fromJson(jsonArr,listOfResultEntityType);
 
-//            for(int i=0;i<5;i++){
-//                resultEntityCollectionTemp = this.gson.fromJson(jsonArr,listOfResultEntityType);
-//                //resultEntityCollection.addAll(resultEntityCollectionTemp);
-//                for(int j=0;j<28;j++){
-//                   // String g = resultEntityCollectionTemp.get(j).getLanguage();
-//                    resultEntityCollection.add(resultEntityCollectionTemp.get(j));
-//                    //jsonArr.size()
-//                }
-//            }
-
-            if(resultEntityCollection==null)
-                Log.e("resultEntityCollectio",String.valueOf(resultListJsonResponse));
             return resultEntityCollection;
         } catch (JsonSyntaxException jsonException){//| JSONException jsonException) {
 

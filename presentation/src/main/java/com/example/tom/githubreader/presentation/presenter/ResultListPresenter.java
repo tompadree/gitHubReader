@@ -71,7 +71,6 @@ public class ResultListPresenter implements Presenter {
   }
 
   private void addResultList(String page) {
-    //this.hideViewRetry();
     this.showViewLoading();
     this.page=page;
     this.getResultList();
@@ -131,7 +130,6 @@ public class ResultListPresenter implements Presenter {
 
     @Override public void onNext(List<Result> result) {
       if(result.isEmpty() || result==null)
-        Log.e("EMPTY","EMPTY");
       ResultListPresenter.this.showResultCollectionInView(result);
     }
   }

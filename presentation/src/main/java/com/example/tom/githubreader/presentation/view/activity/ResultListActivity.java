@@ -4,33 +4,27 @@ package com.example.tom.githubreader.presentation.view.activity;
  */
 
 
-        import android.os.Bundle;
-        import android.widget.Button;
-        import android.widget.EditText;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 
-        import com.example.tom.githubreader.presentation.R;
-        import com.example.tom.githubreader.presentation.di.HasComponent;
-        import com.example.tom.githubreader.presentation.di.components.DaggerResultComponent;
-        import com.example.tom.githubreader.presentation.di.components.ResultComponent;
-        import com.example.tom.githubreader.presentation.di.modules.ResultModule;
-        import com.example.tom.githubreader.presentation.model.ResultModel;
-        import com.example.tom.githubreader.presentation.view.fragment.ResultListFragment;
+import com.example.tom.githubreader.presentation.R;
+import com.example.tom.githubreader.presentation.di.HasComponent;
+import com.example.tom.githubreader.presentation.di.components.DaggerResultComponent;
+import com.example.tom.githubreader.presentation.di.components.ResultComponent;
+import com.example.tom.githubreader.presentation.di.modules.ResultModule;
+import com.example.tom.githubreader.presentation.model.ResultModel;
+import com.example.tom.githubreader.presentation.view.fragment.ResultListFragment;
 
-        import butterknife.Bind;
-        import butterknife.ButterKnife;
-        import butterknife.OnClick;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Activity that shows a list of Repositories.
  */
 public class ResultListActivity extends BaseActivity implements HasComponent<ResultComponent>, ResultListFragment.ResultListListener {
 
-//    public static Intent getCallingIntent(Context context, String searchRepo) {
-//
-//        Intent callingIntent = new Intent(context, ResultListActivity.class);
-//        callingIntent.putExtra("searchRepo", searchRepo);
-//        return callingIntent;
-//    }
 
     private String searchRepo="",page="1";
     private ResultComponent resultComponent;
@@ -41,12 +35,10 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_layout);
         ButterKnife.bind(this);
         fragment = new ResultListFragment();
     }
-
 
     private void initializeInjector() {
         this.resultComponent = DaggerResultComponent.builder()
@@ -77,5 +69,3 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
     }
 
 }
-
-

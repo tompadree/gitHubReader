@@ -25,7 +25,6 @@ public abstract class BaseActivity extends Activity {
     this.getApplicationComponent().inject(this);
   }
 
-
   /**
    * Adds a {@link Fragment} to this activity's layout.
    *

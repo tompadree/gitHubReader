@@ -114,29 +114,6 @@ public class RestApiImpl implements RestApi {
         });
     }
 
-//    @RxLogObservable
-//    @Override public Observable<List<UserEntity>> userEntityList() {
-//        return Observable.create(subscriber -> {
-//            if (isThereInternetConnection()) {
-//                try {
-//                    String responseUserEntities = getUserEntitiesFromApi();
-//                    if (responseUserEntities != null) {
-//                        subscriber.onNext(userEntityJsonMapper.transformUserEntityCollection(
-//                                responseUserEntities));
-//                        subscriber.onCompleted();
-//                    } else {
-//                        subscriber.onError(new NetworkConnectionException());
-//                    }
-//                } catch (Exception e) {
-//                    subscriber.onError(new NetworkConnectionException(e.getCause()));
-//                }
-//            } else {
-//                subscriber.onError(new NetworkConnectionException());
-//            }
-//        });
-//    }
-//
-
 
     private String getResultEntitiesFromApi(String repoSearch, String page) throws MalformedURLException {
         String call = API_URL_GET_SEARCH + repoSearch + "&page=" + page + "&per_page=100";

@@ -45,20 +45,10 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
     void newPageShow(final String page);
   }
 
-//  public interface ScrollListListener {
-//    void newPageshow(final String page);
-//  }
-
   @Inject
   ResultListPresenter resultListPresenter;
   @Inject
   ResultAdapter resultAdapter;
-
-//  @Inject @Named("pageStr") String pageStr;
-//  @Inject @Named("repoName") String repoName;
-
-//  @Inject
-//  Page pageId;
 
   @Bind(R.id.rv_repos) RecyclerView rv_repos;
   @Bind(R.id.rl_progress) RelativeLayout rl_progress;

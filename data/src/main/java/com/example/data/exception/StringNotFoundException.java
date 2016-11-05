@@ -5,7 +5,7 @@ package com.example.data.exception;
  */
 
 /**
- * Exception throw by the application when a Result search can't return a valid result.
+ * Exception throw by the application when a string from search is not valid
  */
 public class StringNotFoundException extends Exception {
 

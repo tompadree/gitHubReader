@@ -3,7 +3,7 @@ package com.example.data.exception;
 /**
  * Created by Tom on 5.11.2016..
  *
- * Exception throw by the application when a there is a network connection exception.
+ * Exception throw by the application when a there is a api connection exception.
  */
 public class ApiLimitException extends Exception {
 
