@@ -16,5 +16,5 @@ public interface ResultDetailsView extends LoadDataView {
      *
      * @param result The {@link ResultModel} that will be shown.
      */
-    void renderResult(ResultModel result);
+    void renderResult(ResultModel result) throws Exception;
 }

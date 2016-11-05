@@ -82,7 +82,10 @@ public class RestApiImpl implements RestApi {
                         subscriber.onError(new NetworkConnectionException(e.getCause()));
                 }
             } else {
-                subscriber.onError(new Exception());
+                if(repoSearch.isEmpty() || repoSearch.equals(""))
+                    subscriber.onError(new Exception());
+                else
+                    subscriber.onError(new NetworkConnectionException());
             }
         });
     }
@@ -92,9 +95,9 @@ public class RestApiImpl implements RestApi {
         return Observable.create(subscriber -> {
             if (isThereInternetConnection()) {
                 try {
-                    String responseUserDetails = getRepoDetailsFromApi(repoName);
-                    if (responseUserDetails != null) {
-                        subscriber.onNext(resultEntityJsonMapper.transformResultEntity(responseUserDetails));
+                    String responseRepoDetails = getRepoDetailsFromApi(repoName);
+                    if (responseRepoDetails != null) {
+                        subscriber.onNext(resultEntityJsonMapper.transformResultEntity(responseRepoDetails));
                         subscriber.onCompleted();
                     } else {
                         if(repoName.isEmpty() || repoName.equals(""))

@@ -39,7 +39,7 @@ public class Navigator {
    *
    * @param context A Context needed to open the destiny activity.
    */
-  public void navigateToUserDetails(Context context, String repoName) {
+  public void navigateToRepoDetails(Context context, String repoName) {
     if (context != null) {
       Intent intentToLaunch = ResultDetailsActivity.getCallingIntent(context, repoName);
       context.startActivity(intentToLaunch);

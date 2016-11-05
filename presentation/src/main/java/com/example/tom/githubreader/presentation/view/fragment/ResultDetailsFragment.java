@@ -18,7 +18,9 @@ import com.example.tom.githubreader.presentation.di.components.ResultComponent;
 import com.example.tom.githubreader.presentation.model.ResultModel;
 import com.example.tom.githubreader.presentation.presenter.ResultDetailsPresenter;
 import com.example.tom.githubreader.presentation.view.ResultDetailsView;
-import com.example.tom.githubreader.presentation.view.component.AutoLoadImageView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
@@ -32,7 +34,7 @@ import butterknife.OnClick;
 public class ResultDetailsFragment extends BaseFragment implements ResultDetailsView {
 
   @Inject
-  ResultDetailsPresenter userDetailsPresenter;
+  ResultDetailsPresenter repoDetailsPresenter;
 
   @Bind(R.id.fragmentLayout) LinearLayout fragmentLayout;
   @Bind(R.id.tv_fullname) TextView tv_fullname;
@@ -64,7 +66,7 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
     setRetainInstance(true);
   }
   private String repoName;
-
+  private SimpleDateFormat fmt, outputTime;
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.getComponent(ResultComponent.class).inject(this);
@@ -72,27 +74,27 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    final View fragmentView = inflater.inflate(R.layout.fragment_user_details, container, false);
+    final View fragmentView = inflater.inflate(R.layout.fragment_repo_details, container, false);
     ButterKnife.bind(this, fragmentView);
     return fragmentView;
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    this.userDetailsPresenter.setView(this);
+    this.repoDetailsPresenter.setView(this);
     if (savedInstanceState == null) {
-      this.loadUserDetails();
+      this.loadRepoDetails();
     }
   }
 
   @Override public void onResume() {
     super.onResume();
-    this.userDetailsPresenter.resume();
+    this.repoDetailsPresenter.resume();
   }
 
   @Override public void onPause() {
     super.onPause();
-    this.userDetailsPresenter.pause();
+    this.repoDetailsPresenter.pause();
   }
 
   @Override public void onDestroyView() {
@@ -102,36 +104,48 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
 
   @Override public void onDestroy() {
     super.onDestroy();
-    this.userDetailsPresenter.destroy();
+    this.repoDetailsPresenter.destroy();
   }
 
   @Override public void renderResult(ResultModel result) {
-    if (result != null) {
-      this.fragmentLayout.setVisibility(View.VISIBLE);
-      this.tv_fullname.setText(result.getRepoName());
-      this.tv_language.setText(String.valueOf(result.getLanguage()));
-      this._language.setOnClickListener(clicInfokListener);
-      this.tv_created.setText(String.valueOf(result.getCreatedAt()));
-      this._created.setOnClickListener(clicInfokListener);
-      this.tv_modified.setText(String.valueOf(result.getModified()));
-      this._modified.setOnClickListener(clicInfokListener);
-      this.tv_watchers.setText(String.valueOf(result.getWatchers()));
-      this._watchers.setOnClickListener(clicInfokListener);
-      this.tv_forks.setText(String.valueOf(result.getForks()));
-      this._forks.setOnClickListener(clicInfokListener);
-      this.tv_issues.setText(String.valueOf(result.getIssues()));
-      this._issues.setOnClickListener(clicInfokListener);
-      this.tv_subscriptions.setText(String.valueOf(result.getSubscribers()));
-      this._subscriptions.setOnClickListener(clicInfokListener);
-      this.tv_typeUser.setText(String.valueOf(result.getUserType()));
-      this._typeUser.setOnClickListener(clicInfokListener);
-      this.tv_siteAdmin.setText(String.valueOf(result.getSiteAdmin()));
-      this._siteAdmin.setOnClickListener(clicInfokListener);
-      this.tv_pull.setOnClickListener(clicInfokListener);
-      this.tv_pulse.setOnClickListener(clicInfokListener);
 
-      repoName = result.getRepoName();
-    }
+      if (result != null) {
+
+        fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        outputTime = new SimpleDateFormat("H:mm  d.M.yyyy");
+
+        this.fragmentLayout.setVisibility(View.VISIBLE);
+        this.tv_fullname.setText(result.getRepoName());
+        this.tv_language.setText(String.valueOf(result.getLanguage()));
+        this._language.setOnClickListener(clicInfokListener);
+        try {
+          this.tv_created.setText(outputTime.format(fmt.parse(result.getCreatedAt())));
+          this._created.setOnClickListener(clicInfokListener);
+          this.tv_modified.setText(outputTime.format(fmt.parse(result.getModified())));
+          this._modified.setOnClickListener(clicInfokListener);
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
+
+        this.tv_watchers.setText(String.valueOf(result.getWatchers()));
+        this._watchers.setOnClickListener(clicInfokListener);
+        this.tv_forks.setText(String.valueOf(result.getForks()));
+        this._forks.setOnClickListener(clicInfokListener);
+        this.tv_issues.setText(String.valueOf(result.getIssues()));
+        this._issues.setOnClickListener(clicInfokListener);
+        this.tv_subscriptions.setText(String.valueOf(result.getSubscribers()));
+        this._subscriptions.setOnClickListener(clicInfokListener);
+        this.tv_typeUser.setText(String.valueOf(result.getUserType()));
+        this._typeUser.setOnClickListener(clicInfokListener);
+        this.tv_siteAdmin.setText(String.valueOf(result.getSiteAdmin()));
+        this._siteAdmin.setOnClickListener(clicInfokListener);
+        this.tv_pull.setOnClickListener(clicInfokListener);
+        this.tv_pulse.setOnClickListener(clicInfokListener);
+
+        repoName = result.getRepoName();
+      }
+
+
   }
 
   @Override public void showLoading() {
@@ -161,11 +175,11 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
   }
 
   /**
-   * Loads all users.
+   * Loads all repositories.
    */
-  private void loadUserDetails() {
-    if (this.userDetailsPresenter != null) {
-      this.userDetailsPresenter.initialize();
+  private void loadRepoDetails() {
+    if (this.repoDetailsPresenter != null) {
+      this.repoDetailsPresenter.initialize();
     }
   }
 
@@ -232,6 +246,6 @@ public class ResultDetailsFragment extends BaseFragment implements ResultDetails
 
   @OnClick(R.id.bt_retry)
   void onButtonRetryClick() {
-    ResultDetailsFragment.this.loadUserDetails();
+    ResultDetailsFragment.this.loadRepoDetails();
   }
 }

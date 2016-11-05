@@ -17,7 +17,7 @@ public interface RestApi {
     //String API_BASE_URL = "https://api.github.com/";
     String API_BASE_URL = "https://api.github.com/";
 
-    /** Api url for getting all users */
+    /** Api url for getting all repos */
     String API_URL_GET_SEARCH = API_BASE_URL + "search/repositories?q=";//drek";
 
     /** Api url for getting repo */

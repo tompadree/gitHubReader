@@ -20,7 +20,7 @@ public interface ResultListView extends LoadDataView{
     /**
      * View a {@link ResultModel} profile/details.
      *
-     * @param userModel The result that will be shown.
+     * @param resultModel The result that will be shown.
      */
-    void viewRepo(ResultModel userModel);
+    void viewRepo(ResultModel resultModel);
 }

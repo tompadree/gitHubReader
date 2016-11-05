@@ -35,7 +35,7 @@
     <string name="exception_message_generic">There was an application error</string>
     <string name="exception_message_no_connection">There is no internet connection</string>
     <string name="exception_message_no_string">Please enter search term</string>
-    <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
+    <string name="exception_message_result_not_found">Cannot retrieve user data. Check your internet connection</string>
     <string name="exception_message_api_limit">API rate limit exceeded. Please wait.</string>
 
 </resources>

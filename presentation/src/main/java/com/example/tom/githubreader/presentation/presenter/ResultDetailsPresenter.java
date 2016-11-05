@@ -86,7 +86,7 @@ public class ResultDetailsPresenter implements Presenter {
 
     }
 
-    private void showResultDetailsInView(Result result) {
+    private void showResultDetailsInView(Result result) throws Exception {
         final ResultModel resultModel = this.resultModelDataMapper.transform(result);
         this.viewDetailsView.renderResult(resultModel);
     }
@@ -111,7 +111,11 @@ public class ResultDetailsPresenter implements Presenter {
         }
 
         @Override public void onNext(Result result) {
-            ResultDetailsPresenter.this.showResultDetailsInView(result);
+            try {
+                ResultDetailsPresenter.this.showResultDetailsInView(result);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

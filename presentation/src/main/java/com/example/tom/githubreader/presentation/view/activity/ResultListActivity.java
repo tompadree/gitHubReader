@@ -21,7 +21,7 @@ package com.example.tom.githubreader.presentation.view.activity;
         import butterknife.OnClick;
 
 /**
- * Activity that shows a list of Users.
+ * Activity that shows a list of Repositories.
  */
 public class ResultListActivity extends BaseActivity implements HasComponent<ResultComponent>, ResultListFragment.ResultListListener {
 
@@ -61,7 +61,7 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
     }
 
     @Override public void onResultClicked(ResultModel resultModel) {
-        this.navigator.navigateToUserDetails(this, resultModel.getRepoName());
+        this.navigator.navigateToRepoDetails(this, resultModel.getRepoName());
     }
 
     @Override

@@ -25,12 +25,12 @@ import butterknife.ButterKnife;
  */
 public class ResultDetailsActivity extends BaseActivity implements HasComponent<ResultComponent> {
 
-    private static final String INTENT_EXTRA_PARAM_USER_ID = "org.android10.INTENT_PARAM_USER_ID";
-    private static final String INSTANCE_STATE_PARAM_USER_ID = "org.android10.STATE_PARAM_USER_ID";
+    private static final String INTENT_EXTRA_PARAM_RESULT_ID = "org.android10.INTENT_PARAM_USER_ID";
+    private static final String INSTANCE_STATE_PARAM_RESULT_ID = "org.android10.STATE_PARAM_USER_ID";
 
     public static Intent getCallingIntent(Context context, String repoName) {
         Intent callingIntent = new Intent(context, ResultDetailsActivity.class);
-        callingIntent.putExtra(INTENT_EXTRA_PARAM_USER_ID, repoName);
+        callingIntent.putExtra(INTENT_EXTRA_PARAM_RESULT_ID, repoName);
         return callingIntent;
     }
     @Bind(R.id.btn_LoadData)
@@ -55,7 +55,7 @@ public class ResultDetailsActivity extends BaseActivity implements HasComponent<
 
     @Override protected void onSaveInstanceState(Bundle outState) {
         if (outState != null) {
-            outState.putString(INSTANCE_STATE_PARAM_USER_ID, this.repoName);
+            outState.putString(INSTANCE_STATE_PARAM_RESULT_ID, this.repoName);
         }
         super.onSaveInstanceState(outState);
     }
@@ -65,10 +65,10 @@ public class ResultDetailsActivity extends BaseActivity implements HasComponent<
      */
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            this.repoName = getIntent().getExtras().getString(INTENT_EXTRA_PARAM_USER_ID, "");
+            this.repoName = getIntent().getExtras().getString(INTENT_EXTRA_PARAM_RESULT_ID, "");
             addFragment(R.id.fragmentContainer, new ResultDetailsFragment());
         } else {
-            this.repoName = savedInstanceState.getString(INSTANCE_STATE_PARAM_USER_ID);
+            this.repoName = savedInstanceState.getString(INSTANCE_STATE_PARAM_RESULT_ID);
         }
     }
 
