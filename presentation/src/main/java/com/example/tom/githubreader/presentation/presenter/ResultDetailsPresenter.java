@@ -83,6 +83,7 @@ public class ResultDetailsPresenter implements Presenter {
         String errorMessage = ErrorMessageFactory.create(this.viewDetailsView.context(),
                 errorBundle.getException());
         this.viewDetailsView.showError(errorMessage);
+
     }
 
     private void showResultDetailsInView(Result result) {
@@ -91,7 +92,7 @@ public class ResultDetailsPresenter implements Presenter {
     }
 
     private void getResultDetails() {
-        this.getResultDetailsUseCase.execute(new ResultDetailsSubscriber());
+        this.getResultDetailsUseCase.execute(new ResultDetailsSubscriber(),"");
     }
 
     @RxLogSubscriber
@@ -102,7 +103,9 @@ public class ResultDetailsPresenter implements Presenter {
         }
 
         @Override public void onError(Throwable e) {
+            e.printStackTrace();
             ResultDetailsPresenter.this.hideViewLoading();
+
             ResultDetailsPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
             ResultDetailsPresenter.this.showViewRetry();
         }

@@ -1,8 +1,3 @@
-/**
- * Copyright (C) 2014 android10.org. All rights reserved.
- *
- * @author Fernando Cejas (the android10 coder)
- */
 package com.example.tom.githubreader.presentation.view.fragment;
 
 import android.app.Activity;
@@ -13,13 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.tom.githubreader.presentation.R;
 import com.example.tom.githubreader.presentation.di.components.ResultComponent;
+import com.example.tom.githubreader.presentation.di.modules.ResultModule;
 import com.example.tom.githubreader.presentation.model.ResultModel;
 import com.example.tom.githubreader.presentation.presenter.ResultListPresenter;
 import com.example.tom.githubreader.presentation.view.ResultListView;
@@ -31,6 +26,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -58,13 +54,19 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
   @Inject
   ResultAdapter resultAdapter;
 
+//  @Inject @Named("pageStr") String pageStr;
+//  @Inject @Named("repoName") String repoName;
+
+//  @Inject
+//  Page pageId;
+
   @Bind(R.id.rv_users) RecyclerView rv_users;
   @Bind(R.id.rl_progress) RelativeLayout rl_progress;
   @Bind(R.id.rl_retry) RelativeLayout rl_retry;
   @Bind(R.id.bt_retry) Button bt_retry;
 
   private ResultListListener resultListListener;
-  private int page=0;
+  private int page=1,ct=2;
 
   public ResultListFragment() {
     setRetainInstance(true);
@@ -79,6 +81,7 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     this.getComponent(ResultComponent.class).inject(this);
   }
 
@@ -149,6 +152,7 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
   }
 
   @Override public void viewRepo(ResultModel resultModel) {
+
     if (this.resultListListener != null) {
       this.resultListListener.onResultClicked(resultModel);
       this.resultListListener.newPageShow(String.valueOf(this.page));
@@ -165,8 +169,7 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
 
 
   private void setupRecyclerView() {
-
-    this.rv_users.addOnScrollListener(sc);
+    this.rv_users.addOnScrollListener(scListener);
     this.resultAdapter.setOnItemClickListener(onItemClickListener);
     this.rv_users.setLayoutManager(new ResultLayoutManager(context()));
     this.rv_users.addItemDecoration(new HorizontalDividerItemDecoration.Builder(context()).build());
@@ -181,12 +184,6 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
     this.resultListPresenter.initialize();
   }
 
-  /**
-   * Loads all result.
-   */
-  private void loadMoreResultList() {
-    this.resultListPresenter.initialize();
-  }
 
   @OnClick(R.id.bt_retry) void onButtonRetryClick() {
     ResultListFragment.this.loadResultList();
@@ -200,21 +197,41 @@ public class ResultListFragment extends BaseFragment implements ResultListView {
           }
         }
       };
-
-RecyclerView.OnScrollListener sc = new RecyclerView.OnScrollListener() {
+  public RecyclerView.OnScrollListener scListener = new RecyclerView.OnScrollListener() {
   @Override
   public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
     super.onScrolled(recyclerView, dx, dy);
 
-    if(rv_users.computeVerticalScrollOffset()/200>20+page && ResultListFragment.this.resultListPresenter != null){
-      ResultListFragment.this.resultListPresenter.newPageShow(String.valueOf((page+20)/10));
+    if(rv_users.computeVerticalScrollOffset()/200>60+page && ResultListFragment.this.resultListPresenter != null && ct<11){
+
+      if(60+page==60)
+        ct=2;
+
+      ResultListFragment.this.resultListPresenter.newPageShow(String.valueOf(ct++));
       page = rv_users.computeVerticalScrollOffset()/200;
+
     }
+
+    // https://developer.github.com/v3/search/
+    if(rv_users.computeVerticalScrollOffset()/200==1000)
+      Toast.makeText(getActivity(),"Only the first 1000 search results are available",Toast.LENGTH_LONG).show();
 
 
     Log.e("ONSCROLL",String.valueOf(rv_users.computeVerticalScrollOffset()/200));
   }
+
 };
+
+
+
+//  /**
+//   * Get an Activity module for dependency injection.
+//   *
+//   *
+//   */
+//  protected PageModule getPageModule() {
+//    return new PageModule(String.valueOf(this.page));
+//  }
 
 
 }

@@ -8,14 +8,17 @@ package com.example.data.net;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.example.data.entity.ResultEntity;
 import com.example.data.entity.mapper.ResultEntityJsonMapper;
+import com.example.data.exception.ApiLimitException;
 import com.example.data.exception.NetworkConnectionException;
 import com.example.data.exception.StringNotFoundException;
 import com.fernandocejas.frodo.annotation.RxLogObservable;
 import java.net.MalformedURLException;
 import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -23,9 +26,14 @@ import rx.Observable;
  */
 public class RestApiImpl implements RestApi {
 
+
+//    @Inject
+//    public RestApiImpl(Page page)
+//    {
+//        System.out.println("value of fooString is " + fooString);
+//    }
     private final Context context;
     private final ResultEntityJsonMapper resultEntityJsonMapper;
-
     /**
      * Constructor of the class
      *
@@ -46,9 +54,19 @@ public class RestApiImpl implements RestApi {
         return Observable.create(subscriber -> {
             if (isThereInternetConnection() || repoSearch.isEmpty() || repoSearch.equals("")) {
                 try {
+
                     String responseResultEntities = getResultEntitiesFromApi(repoSearch,page);
+
+                    // https://developer.github.com/v3/#rate-limiting
+                        if((responseResultEntities.split("limit exceeded")[0]).equals("{\"message\":\"API rate ")){
+                            Log.e("LIMIT",String.valueOf(responseResultEntities));
+                            subscriber.onError(new ApiLimitException());
+                            Thread.sleep(5000);
+                            responseResultEntities = getResultEntitiesFromApi(repoSearch,page);}
+
                     if (responseResultEntities != null) {
-                         subscriber.onNext(resultEntityJsonMapper.transformResultEntityCollection(responseResultEntities));
+
+                        subscriber.onNext(resultEntityJsonMapper.transformResultEntityCollection(responseResultEntities));
                         subscriber.onCompleted();
                     } else {
                         if(repoSearch.isEmpty() || repoSearch.equals(""))
@@ -64,7 +82,7 @@ public class RestApiImpl implements RestApi {
                         subscriber.onError(new NetworkConnectionException(e.getCause()));
                 }
             } else {
-                subscriber.onError(new NetworkConnectionException());
+                subscriber.onError(new Exception());
             }
         });
     }
@@ -118,7 +136,8 @@ public class RestApiImpl implements RestApi {
 
 
     private String getResultEntitiesFromApi(String repoSearch, String page) throws MalformedURLException {
-        return ApiConnection.createGET(API_URL_GET_SEARCH + repoSearch + "&page=" + page).requestSyncCall();
+        String call = API_URL_GET_SEARCH + repoSearch + "&page=" + page + "&per_page=100";
+        return ApiConnection.createGET(call).requestSyncCall();
     }
 
     private String getRepoDetailsFromApi(String repoName) throws MalformedURLException {

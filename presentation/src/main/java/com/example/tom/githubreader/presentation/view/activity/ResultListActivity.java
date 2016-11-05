@@ -4,16 +4,9 @@ package com.example.tom.githubreader.presentation.view.activity;
  */
 
 
-        import android.content.Context;
-        import android.content.Intent;
         import android.os.Bundle;
-        import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.Toolbar;
-        import android.view.Window;
-        import android.widget.AbsListView;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.ListAdapter;
 
         import com.example.tom.githubreader.presentation.R;
         import com.example.tom.githubreader.presentation.di.HasComponent;
@@ -39,7 +32,7 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
 //        return callingIntent;
 //    }
 
-    private String searchRepo="",page="0";
+    private String searchRepo="",page="1";
     private ResultComponent resultComponent;
     private ResultListFragment fragment;
 
@@ -51,32 +44,9 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_layout);
         ButterKnife.bind(this);
-
         fragment = new ResultListFragment();
-
-//        this.initializeInjector();
-//        if (savedInstanceState == null)
-//            addFragment(R.id.fragmentContainer, new ResultListFragment());
-
-
-
-
-//        if (savedInstanceState == null) {
-//            addFragment(R.id.fragmentContainer, new ResultListFragment());
-//        }
     }
 
-    /**
-     * Initializes this activity.
-     */
-//    private void initializeActivity(Bundle savedInstanceState) {
-//        if (savedInstanceState == null) {
-//            this.searchRepo = getIntent().getExtras().getString("searchRepo", "");
-//            addFragment(R.id.fragmentContainer, new ResultListFragment());
-//        } else {
-//            this.searchRepo = savedInstanceState.getString("searchRepo");
-//        }
-//    }
 
     private void initializeInjector() {
         this.resultComponent = DaggerResultComponent.builder()
@@ -94,29 +64,15 @@ public class ResultListActivity extends BaseActivity implements HasComponent<Res
         this.navigator.navigateToUserDetails(this, resultModel.getRepoName());
     }
 
-    @Override public void newPageShow(String str){
-
-
-        searchRepo = String.valueOf(this.editText.getText());
-        this.page = str;
-        replaceFragment(R.id.fragmentContainer, fragment);
-        fragment = new ResultListFragment();
-        this.initializeInjector();
-
+    @Override
+    public void newPageShow(String page) {
     }
-
-
 
     @OnClick(R.id.btn_LoadData)
     void searchResult() {
         searchRepo = String.valueOf(this.editText.getText());
-
-       // if (fragment != null)
-            //new ResultListFragment().onDestroy();
-       // addFragment(R.id.fragmentContainer, new ResultListFragment());
         replaceFragment(R.id.fragmentContainer, fragment);
         fragment = new ResultListFragment();
-        //replaceFragment(R.id.fragmentContainer, new ResultListFragment());
         this.initializeInjector();
     }
 

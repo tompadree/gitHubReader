@@ -1,5 +1,7 @@
 package com.example.tom.githubreader.presentation.mapper;
 
+import android.util.Log;
+
 import com.example.domain.Result;
 import com.example.tom.githubreader.presentation.di.PerActivity;
 import com.example.tom.githubreader.presentation.model.ResultModel;

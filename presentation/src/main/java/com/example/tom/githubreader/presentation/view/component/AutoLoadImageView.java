@@ -1,8 +1,4 @@
-/**
- * Copyright (C) 2014 android10.org. All rights reserved.
- *
- * @author Fernando Cejas (the android10 coder)
- */
+
 package com.example.tom.githubreader.presentation.view.component;
 
 import android.app.Activity;
@@ -246,8 +242,10 @@ public class AutoLoadImageView extends ImageView {
           callback.onImageDownloaded(bitmap);
         }
       } catch (MalformedURLException e) {
+        e.printStackTrace();
         reportError(callback);
       } catch (IOException e) {
+        e.printStackTrace();
         reportError(callback);
       }
     }
@@ -307,8 +305,10 @@ public class AutoLoadImageView extends ImageView {
           fileOutputStream.flush();
           fileOutputStream.close();
         } catch (FileNotFoundException e) {
+          e.printStackTrace();
           Log.e(TAG, e.getMessage());
         } catch (IOException e) {
+          e.printStackTrace();
           Log.e(TAG, e.getMessage());
         }
       }

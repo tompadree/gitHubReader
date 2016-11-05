@@ -48,17 +48,17 @@ public abstract class UseCase {
   /**
    * Builds an {@link Observable} which will be used when executing the current {@link UseCase}.
    */
-  protected abstract Observable buildUseCaseObservable();
+  protected abstract Observable buildUseCaseObservable(String page);
 
   /**
    * Executes the current use case.
    *
    * @param useCaseSubscriber The guy who will be listen to the observable build
-   * with {@link #buildUseCaseObservable()}.
+   * with {@link #buildUseCaseObservable(String page)}.
    */
   @SuppressWarnings("unchecked")
-  public void execute(Subscriber useCaseSubscriber) {
-    this.subscription = this.buildUseCaseObservable()
+  public void execute(Subscriber useCaseSubscriber, String page) {
+    this.subscription = this.buildUseCaseObservable(page)
         .subscribeOn(Schedulers.from(threadExecutor))
         .observeOn(postExecutionThread.getScheduler())
         .subscribe(useCaseSubscriber);

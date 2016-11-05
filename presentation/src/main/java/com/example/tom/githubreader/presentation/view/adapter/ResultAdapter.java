@@ -36,7 +36,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.UserViewHo
     }
 
     private List<ResultModel> usersCollection;
-    private List<ResultModel> tempUsersCollection;
+    private List<ResultModel> tempUsersCollection=null;
     private final LayoutInflater layoutInflater;
     private Context ctx;
 
@@ -81,10 +81,18 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.UserViewHo
     }
 
     public void setResultCollection(Collection<ResultModel> usersCollection) {
-        this.validateUsersCollection(usersCollection);
-        this.usersCollection = (List<ResultModel>) usersCollection;
-        //this.usersCollection.addAll(tempUsersCollection);
-        this.notifyDataSetChanged();
+        try {
+            this.validateUsersCollection(usersCollection);
+
+            if(this.tempUsersCollection!=null)
+                this.tempUsersCollection.addAll((List<ResultModel>) usersCollection);
+            else
+                this.tempUsersCollection = (List<ResultModel>) usersCollection;
+            this.usersCollection=tempUsersCollection;
+            this.notifyDataSetChanged();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setOnItemClickListener (ResultAdapter.OnItemClickListener onItemClickListener) {

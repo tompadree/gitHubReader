@@ -29,7 +29,7 @@ public class GetResultDetails extends UseCase {
         this.resultRepository = resultRepository;
     }
 
-    @Override protected Observable buildUseCaseObservable() {
+    @Override protected Observable buildUseCaseObservable(String page) {
         return this.resultRepository.result(repoName);
     }
 }

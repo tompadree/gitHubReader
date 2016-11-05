@@ -1,5 +1,7 @@
 package com.example.data.entity.mapper;
 
+import android.util.Log;
+
 import com.example.data.entity.ResultEntity;
 import com.example.domain.Result;
 
@@ -53,15 +55,25 @@ public class ResultEntityDataMapper {
      * @return {@link Result} if valid {@link ResultEntity} otherwise null.
      */
     public List<Result> transform(Collection<ResultEntity> resultEntityCollection) {
-        List<Result> resultList = new ArrayList<>(50);
-        Result result;
-        for (ResultEntity resultEntity : resultEntityCollection) {
-            result = transform(resultEntity);
-            if (result != null) {
-                resultList.add(result);
-            }
-        }
 
-        return resultList;
+        List<Result> resultList;
+//        if(resultEntityCollection==null || resultEntityCollection.isEmpty())
+//            return null;
+       // try {
+
+           resultList = new ArrayList<>(50);
+           Result result;
+           for (ResultEntity resultEntity : resultEntityCollection) {
+               result = transform(resultEntity);
+               if (result != null) {
+                   resultList.add(result);
+               }
+           }
+
+           return resultList;
+//       }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return resultList;
     }
 }

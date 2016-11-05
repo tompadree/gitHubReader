@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import com.example.tom.githubreader.presentation.AndroidApplication;
 import com.example.tom.githubreader.presentation.di.components.ApplicationComponent;
@@ -71,4 +69,5 @@ public abstract class BaseActivity extends Activity {
   protected ActivityModule getActivityModule() {
     return new ActivityModule(this);
   }
+
 }

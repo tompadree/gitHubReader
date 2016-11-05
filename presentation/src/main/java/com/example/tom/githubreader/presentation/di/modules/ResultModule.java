@@ -20,15 +20,7 @@ import dagger.Provides;
 @Module
 public class ResultModule {
 
-//    private int repoId = -1;
-//
-//    public ResultModule() {}
-//
-//    public ResultModule(int repoId) {
-//        this.repoId = repoId;
-//    }
-
-    private String repoName = "",page="0";
+    private String repoName = "",page="1";
 
     public ResultModule() {}
 
@@ -36,13 +28,6 @@ public class ResultModule {
         this.repoName = repoName;
         this.page=page;
     }
-
-//    @Provides
-//    @PerActivity
-//    @Named("resultList")
-//    UseCase provideGetResultListUseCase(GetResultList getResultList) {
-//        return getResultList;
-//    }
 
     @Provides @PerActivity @Named("resultList") UseCase provideGetResultListUseCase(
             ResultRepository resultRepository, ThreadExecutor threadExecutor,PostExecutionThread postExecutionThread) {

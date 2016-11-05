@@ -1,5 +1,7 @@
 package com.example.data.entity.mapper;
 
+import android.util.Log;
+
 import com.example.data.entity.ResultEntity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -83,6 +85,8 @@ public class ResultEntityJsonMapper {
 //                }
 //            }
 
+            if(resultEntityCollection==null)
+                Log.e("resultEntityCollectio",String.valueOf(resultListJsonResponse));
             return resultEntityCollection;
         } catch (JsonSyntaxException jsonException){//| JSONException jsonException) {
 
